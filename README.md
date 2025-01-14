@@ -2,7 +2,7 @@
 
 ## Unidad I: Administración de Bases de Datos Relacionales
 
-### Tema 1: Copias de seguridad y restauración
+### Tema 1: [Copias de seguridad y restauración](unidad-01/backup-and-restore.md)
 - 🔒 Concepto de copias de seguridad.
 - 🌐 Tipos de copias: Completa, Incremental, Diferencial.
 - 🔎 Escenarios sugeridos para copias de seguridad.
