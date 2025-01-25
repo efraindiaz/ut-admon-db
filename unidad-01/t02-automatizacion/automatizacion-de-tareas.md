@@ -1,4 +1,4 @@
-#S05 Automatización de tareas
+# S05 Automatización de tareas
 
 La automatización de tareas es una estrategia clave para optimizar procesos, ahorrar tiempo y reducir errores humanos en la administración de sistemas y bases de datos.
 
