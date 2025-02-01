@@ -1,4 +1,4 @@
-#S06 - Procesos de migración de datos entre sistemas
+# S06 - Procesos de migración de datos entre sistemas
 
 ## Objetivo:
 
