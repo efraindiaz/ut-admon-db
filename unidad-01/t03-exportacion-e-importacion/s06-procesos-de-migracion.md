@@ -16,7 +16,7 @@ Trasladar datos de un sistema a otro.
 - **Optimización de la infraestructura**
 - **Escalabilidad y rendimiento**
 - **Seguridad**
-- **Integridad
+- **Integridad**
 
 ### Etapas de la Migración de Datos:
 
