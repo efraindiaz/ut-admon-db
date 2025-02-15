@@ -57,10 +57,10 @@ docker run -d \
 ### Explicación de los parámetros:
 
 - `--name percona-mysql` → Nombre del contenedor.
-- `-e MYSQL_ROOT_PASSWORD=rootpassword` → Establece la contraseña del usuario root.
-- `-e MYSQL_DATABASE=mi_base_de_datos` → Crea una base de datos por defecto.
-- `-e MYSQL_USER=usuario` → Crea un usuario adicional.
-- `-e MYSQL_PASSWORD=contrasena` → Asigna una contraseña al usuario adicional.
+- `-e MYSQL_ROOT_PASSWORD=root` → Establece la contraseña del usuario root.
+- `-e MYSQL_DATABASE=my_db` → Crea una base de datos por defecto.
+- `-e MYSQL_USER=user` → Crea un usuario adicional.
+- `-e MYSQL_PASSWORD=password` → Asigna una contraseña al usuario adicional.
 - `-p 3998:3306` → Mapea el puerto 3306 del host al contenedor.
 - `--restart unless-stopped` → Asegura que el contenedor se reinicie a menos que se detenga manualmente.
 - `percona/percona-server:latest` → Usa la imagen más reciente de Percona Server.
