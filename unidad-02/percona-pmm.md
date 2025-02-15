@@ -32,6 +32,7 @@ docker ps
 - Si es necesario, configura las credenciales de inicio de sesión (usuario: `admin`, contraseña: `admin` por defecto). 🔑
 
 ---
+
 ## Parte 2 - Actividad realizada en clase
 
 ### Paso 3:  Percona Server  🗂️
@@ -94,9 +95,11 @@ Luego, ingresa la contraseña de root (`rootpassword` en este ejemplo).
 Después de habernos conectado directamente dentro del conector, es necesario verificar que nuestro puerto `9998`expone nuestro servicio fuera de nuestro contenedor.
 Para esto es necesario conectarnos con alguna herramienta para verificar nuestra conexión.
 
+---
+
 ## Parte 3 (Actividad)
 
-### **Actividad: Configuración de PMM Client y Conexión con Percona Server**
+### **Actividad: A02 Configuración de PMM Client y Conexión con Percona Server**
 
 ### **Objetivo**
 
