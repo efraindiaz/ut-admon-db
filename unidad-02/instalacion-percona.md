@@ -88,56 +88,6 @@ pmm-admin add mysql --username=root --password=rootpassword --host=localhost --p
 
 Opcion 2
 
-Contenedor para **PMM Client**
-
-1 - Deplegar contenedor
-```shell
-docker run -d \
-  --name pmm-client \
-  --restart always \
-  --network host \
-  percona/pmm-client:3
-```
-
-2 - Configurar conexion
-```shell
-docker exec pmm-client pmm-admin config --server-insecure-tls --server-url=http://172.17.0.2:3999
-```
-
-
-```shell
-docker exec pmm-client pmm-admin config --server-insecure-tls --server-url=http://161.35.232.12:3999
-```
-
-3 - Registrar servicio
-```shell
-docker exec pmm-client pmm-admin add mysql --username=root --password=rootpass --host=percona-server --port=3306
-```
-
-```shell
-pmm-admin config --server-insecure-tls --server-url=https://admin:admin@X.X.X.X:443
-```
-
-  docker pull percona/pmm-client:3
-  
-```shell
-  PMM_SERVER=172.17.0.2:8443
-  docker run \
-  --name pmm-client \
-  -e PMM_AGENT_SERVER_ADDRESS=${PMM_SERVER} \
-  -e PMM_AGENT_SERVER_USERNAME=admin \
-  -e PMM_AGENT_SERVER_PASSWORD=admin \
-  -e PMM_AGENT_SERVER_INSECURE_TLS=1 \
-  -e PMM_AGENT_SETUP=1 \
-  -e PMM_AGENT_CONFIG_FILE=config/pmm-agent.yaml \
-  -v pmm-client-data:/srv \
-  percona/pmm-client:3
-  ```
-
-
-  docker exec -t pmm-client pmm-admin status
-
----
 
 ### # Run PMM Client as a Docker container
 Información de la documentación de Percona 
