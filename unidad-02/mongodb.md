@@ -347,4 +347,4 @@ _Este comando restaura la base de datos desde una copia previamente creada._
 
 ---
 
-[Video practica:](https://www.canva.xcom/design/DAGfwh5DHIM/Hu2Q8-gtcz48GALnJAK3tw/edit?utm_content=DAGfwh5DHIM&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+[Video practica MongoDB Grupo-IDYGS82:](https://www.canva.xcom/design/DAGfwh5DHIM/Hu2Q8-gtcz48GALnJAK3tw/edit?utm_content=DAGfwh5DHIM&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
