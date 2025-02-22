@@ -87,9 +87,13 @@ Contenedor para **PMM Client**
 ```shell
 docker run -d \
   --name pmm-client \
-  --restart always \
-  --network host \
-  percona/pmm-client:latest
+  -e PMM_AGENT_SERVER_ADDRESS=172.17.0.2:8443 \
+  -e PMM_AGENT_SERVER_USERNAME=admin \
+  -e PMM_AGENT_SERVER_PASSWORD=admin \
+  -e PMM_AGENT_SERVER_INSECURE_TLS=1 \
+  -e PMM_AGENT_CONFIG_FILE=config/pmm-agent.yaml \
+  -v pmm-client-data:/srv \
+  percona/pmm-client:3
 ```
 
 2 - Configurar conexion
