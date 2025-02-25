@@ -5,6 +5,7 @@
 - Percona Client
 - Percona Server for MongoDB
 
+---
 ## Percona PMM Server
 
 **Image**
@@ -32,6 +33,8 @@ docker pull percona/pmm-server:3 && \
 docker volume create pmm-data && \
 docker run --detach --restart always --publish 3999:8443 -v pmm-data:/srv --name pmm-server percona/pmm-server:3
 ```
+
+---
 ## Percona Server For MySQL
 
 **Contenedor**
@@ -59,7 +62,7 @@ docker exec -it ps-mysql bash
 ```sh
 mysql -u root -p
 ```
-
+---
 ## PMM Client
 
 ### # Run PMM Client as a Docker container
