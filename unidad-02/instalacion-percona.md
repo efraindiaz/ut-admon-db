@@ -62,33 +62,6 @@ mysql -u root -p
 
 ## PMM Client
 
-Opcion 1
-
-PMM Client dentro de Percona Server
-
-1 - Acceder al contenedor
-```bash
-docker exec -it percona-server bash
-```
-
-2 - Instalar PMM Client
-```bash
-sudo apt update && apt install -y pmm2-client
-```
-
-3 - Configurar conexion
-```shell
-pmm-admin config --server-insecure-tls --server-url=http://localhost:3999
-```
-
-4 - Registra el servicio MySQL en PMM
-```shell
-pmm-admin add mysql --username=root --password=rootpassword --host=localhost --port=3306
-```
-
-Opcion 2
-
-
 ### # Run PMM Client as a Docker container
 Información de la documentación de Percona 
 
@@ -104,7 +77,7 @@ Create a Docker volume to store persistent data:
 docker volume create pmm-client-data
 ```
 
-Percona Server Container IP
+Percona PMM Server Container IP
 
 ```shell
 docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' pmm-server
@@ -122,13 +95,6 @@ docker run -d \
   percona/pmm-client:3
 ```
 
-Check status
-
-```shell
-docker exec -t pmm-client pmm-admin status
-```
-
-
 Register your client nodes with PMM Server.
 
 ```shell
@@ -139,6 +105,13 @@ docker exec pmm-client pmm-admin config --server-insecure-tls --server-url=https
 - `443` is the default port number.
 - `admin`/`admin` is the default PMM username and password. This is the same account you use to log into the PMM user interface, which you had the option to change when first logging in.
 
+Check status
+
+```shell
+docker exec -t pmm-client pmm-admin status
+```
+
+Obtener la IP de Percona Server for Mysql
 ```shell
 docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ps-mysql
 ```
@@ -149,25 +122,45 @@ Add the Mysql service to Percona PMM
 docker exec pmm-client pmm-admin add mysql --username=root --password=root --host=172.17.0.3 --port=3306 --service-name=mysql-db
 ```
 
-Some commands to fix errors adding the mysql service
+Registrar el servicio de Mysql con Percona PMM
 
 ```shell
-docker exec -it ps-mysql ls -lah /var/lib/mysql/
+docker exec pmm-client pmm-admin add mysql --username=root --password=root --host=172.17.0.3 --port=3306 --query-source=perfschema mysql-db
 ```
+
+---
+
+MongoDB
 
 ```shell
-docker exec -it ps-mysql touch /var/lib/mysql/mysql-slow.log
+docker run -d --name ps-mongo -p 27017:27017 --restart always percona/percona-server-mongodb:8.0
 ```
 
-```shell
-docker exec -it ps-mysql chmod 666 /var/lib/mysql/mysql-slow.log
+```bash
+docker exect -it ps-mongo bash
 ```
 
-```shell
-docker exec -it pmm-client pmm-admin add mysql --username=root --password=root --host=172.17.0.3 --port=3306 --query-source=slowlog --slow-log=/var/lib/mysql/mysql-slow.log
+```bash
+mongosh
 ```
 
-```shell
-docker restart pmm-client
+```bash
+use admin
 ```
 
+```bash
+db.createUser(
+{
+user: "admin",
+pwd: "admin", // or cleartext password
+roles: [
+{ role: "userAdminAnyDatabase", db: "admin" },
+{ role: "readWriteAnyDatabase", db: "admin" }
+]
+}
+)
+```
+
+```bash
+db> db.adminCommand( { shutdown: 1 } )
+```
