@@ -98,7 +98,7 @@ docker run -d \
   percona/pmm-client:3
 ```
 
-Register your client nodes with PMM Server.
+Registra el nodo del cliente con PMM Server
 
 ```shell
 docker exec pmm-client pmm-admin config --server-insecure-tls --server-url=https://admin:admin@172.17.0.2:8443 --force
@@ -119,13 +119,7 @@ Obtener la IP de Percona Server for Mysql
 docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ps-mysql
 ```
 
-Add the Mysql service to Percona PMM
-
-```shell
-docker exec pmm-client pmm-admin add mysql --username=root --password=root --host=172.17.0.3 --port=3306 --service-name=mysql-db
-```
-
-Registrar el servicio de Mysql con Percona PMM
+Añadir el servicio de Mysql en el contenedor de PMMClient con Percona PMM
 
 ```shell
 docker exec pmm-client pmm-admin add mysql --username=root --password=root --host=172.17.0.3 --port=3306 --query-source=perfschema mysql-db
