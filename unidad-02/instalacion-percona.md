@@ -129,12 +129,13 @@ docker exec pmm-client pmm-admin add mysql --username=root --password=root --hos
 
 MongoDB
 
+
 ```shell
-docker run -d --name ps-mongo -p 27017:27017 --restart always percona/percona-server-mongodb:8.0
+docker run -d --name ps-mongo -p 27018:27017 --restart always percona/percona-server-mongodb:8.0
 ```
 
 ```bash
-docker exect -it ps-mongo bash
+docker exec -it ps-mongo bash
 ```
 
 ```bash
@@ -146,18 +147,21 @@ use admin
 ```
 
 ```bash
-db.createUser(
-{
-user: "admin",
-pwd: "admin", // or cleartext password
-roles: [
-{ role: "userAdminAnyDatabase", db: "admin" },
-{ role: "readWriteAnyDatabase", db: "admin" }
-]
-}
-)
+db.createUser({
+	user: "admin",
+	pwd: "admin", // or cleartext password
+	roles: [
+		{ role: "userAdminAnyDatabase", db: "admin" },
+		{ role: "readWriteAnyDatabase", db: "admin" }
+	]
+})
 ```
 
 ```bash
-db> db.adminCommand( { shutdown: 1 } )
+db > db.adminCommand( { shutdown: 1 } )
 ```
+
+```
+mongosh -u admin -p admin --authenticationDatabase admin
+```
+
