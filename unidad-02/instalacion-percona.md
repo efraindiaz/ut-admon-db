@@ -151,41 +151,68 @@ docker exec pmm-client pmm-admin add mysql --username=root --password=root --hos
 
 ---
 
-MongoDB
+## Configuración de MongoDB con Docker
 
-
-```shell
+### 1. Iniciar un contenedor de MongoDB con Percona
+```sh
 docker run -d --name ps-mongo -p 27018:27017 --restart always percona/percona-server-mongodb:8.0
 ```
+- **`-d`**: Ejecuta el contenedor en modo demonio (en segundo plano).
+- **`--name ps-mongo`**: Asigna el nombre `ps-mongo` al contenedor.
+- **`-p 27018:27017`**: Mapea el puerto local `27018` al puerto interno `27017` de MongoDB.
+- **`--restart always`**: Configura el contenedor para reiniciarse siempre que se detenga o falle.
+- **`percona/percona-server-mongodb:8.0`**: Usa la imagen de Percona Server for MongoDB versión 8.0.
 
-```bash
+### 2. Acceder al contenedor
+```sh
 docker exec -it ps-mongo bash
 ```
+- **`docker exec`**: Ejecuta un comando dentro de un contenedor en ejecución.
+- **`-it`**: Permite la interacción con una terminal.
+- **`ps-mongo`**: Nombre del contenedor en el que se ejecutará el comando.
+- **`bash`**: Inicia una sesión de terminal dentro del contenedor.
 
-```bash
+### 3. Iniciar el cliente de MongoDB
+```sh
 mongosh
 ```
+- Inicia la shell interactiva de MongoDB (`mongosh`).
 
-```bash
+### 4. Cambiar al contexto de administración
+```sh
 use admin
 ```
+- Cambia a la base de datos `admin` para la configuración de usuarios y permisos.
 
-```bash
+### 5. Crear un usuario administrador
+```sh
 db.createUser({
-	user: "admin",
-	pwd: "admin", // or cleartext password
-	roles: [
-		{ role: "userAdminAnyDatabase", db: "admin" },
-		{ role: "readWriteAnyDatabase", db: "admin" }
-	]
+    user: "admin",
+    pwd: "admin", // o una contraseña segura
+    roles: [
+        { role: "userAdminAnyDatabase", db: "admin" },
+        { role: "readWriteAnyDatabase", db: "admin" }
+    ]
 })
 ```
+- Crea un usuario con nombre `admin` y contraseña `admin`.
+- Asigna los roles:
+  - `userAdminAnyDatabase`: Permiso para administrar usuarios en cualquier base de datos.
+  - `readWriteAnyDatabase`: Permiso de lectura y escritura en cualquier base de datos.
 
-```bash
-db > db.adminCommand( { shutdown: 1 } )
+### 6. Apagar MongoDB desde la shell
+```sh
+db.adminCommand({ shutdown: 1 })
 ```
+- Cierra la instancia de MongoDB de manera segura.
 
-```
+### 7. Conectar con autenticación
+```sh
 mongosh -u admin -p admin --authenticationDatabase admin
 ```
+- **`-u admin`**: Usuario `admin`.
+- **`-p admin`**: Contraseña `admin`.
+- **`--authenticationDatabase admin`**: Base de datos donde se encuentra el usuario de autenticación.
+
+Este flujo permite iniciar y configurar un servidor MongoDB dentro de un contenedor Docker, agregar un usuario administrador y conectarse con autenticación.
 
