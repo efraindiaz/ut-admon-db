@@ -101,12 +101,36 @@ docker run -d \
 Registra el nodo del cliente con PMM Server
 
 ```shell
-docker exec pmm-client pmm-admin config --server-insecure-tls --server-url=https://admin:admin@172.17.0.2:8443 --force
+docker exec pmm-client pmm-admin config \
+--server-insecure-tls \
+--server-url=http://admin:admin@172.17.0.2:8443 \
+172.17.0.4 container ps-dk-container \
+--force
 ```
 
-- `X.X.X.X` is the address of your PMM Server.
-- `443` is the default port number.
-- `admin`/`admin` is the default PMM username and password. This is the same account you use to log into the PMM user interface, which you had the option to change when first logging in.
+### Explicación
+
+1. **`docker exec pmm-client`**  
+    Ejecuta un comando dentro del contenedor `pmm-client`. En este caso, se ejecuta `pmm-admin config`.
+    
+2. **`pmm-admin config`**  
+    Es el comando de Percona Monitoring and Management (PMM) para configurar el cliente (`pmm-client`).
+    
+3. **`--server-insecure-tls`**  
+    Permite la conexión con el servidor PMM aunque tenga un certificado TLS no válido (autofirmado o inseguro).
+    
+4. **`--server-url=http://admin:admin@172.17.0.2:8443`**  
+    Define la URL del servidor PMM, con usuario `admin` y contraseña `admin`, ubicado en `172.17.0.2`, puerto `8443`.  
+    → Este es el servidor PMM al que se conectará el cliente.
+    
+5. **`172.17.0.4`**  
+    Especifica la IP del host que se va a registrar en PMM (probablemente otro contenedor o máquina con una base de datos).
+    
+6. **`container ps-dk-container`**  
+    Registra un servicio con el nombre `ps-dk-container`, indicando que el objetivo es un contenedor.
+    
+7. **`--force`**  
+    Fuerza la configuración, sobrescribiendo cualquier configuración previa.
 
 Check status
 
