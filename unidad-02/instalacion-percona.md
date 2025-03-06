@@ -216,3 +216,79 @@ mongosh -u admin -p admin --authenticationDatabase admin
 
 Este flujo permite iniciar y configurar un servidor MongoDB dentro de un contenedor Docker, agregar un usuario administrador y conectarse con autenticación.
 
+### Create a role with monitoring and QAN privileges[¶](https://docs.percona.com/percona-monitoring-and-management/2/setting-up/client/mongodb.html#create-a-role-with-monitoring-and-qan-privileges "Permanent link")
+
+This role grants the essential minimum privileges needed for monitoring and QAN.
+
+```bash
+db.getSiblingDB("admin").createRole({
+"role": "monitor",
+"privileges": [
+{
+"resource": { "db": "", "collection": ""
+},
+"actions": [ "dbHash", "find", "listIndexes", "listCollections"  ]
+},
+{
+"resource": { "db": "", "collection": "system.version"  },
+"actions": [ "find" ]
+}
+],
+"roles": []
+})
+```
+
+### Permissions for advanced metrics[¶](https://docs.percona.com/percona-monitoring-and-management/2/setting-up/client/mongodb.html#permissions-for-advanced-metrics "Permanent link")
+
+To fetch advanced metrics like usage statistics for collection and indexes, assign the following additional privileges to an existing PMM user:
+
+```bash
+db.getSiblingDB("admin").updateRole(
+"monitor",
+{
+"privileges": [
+{
+"resource": { "db": "", "collection": "" },
+"actions": [ "collStats", "dbStats", "indexStats" ]
+},
+{
+"resource": { "db": "", "collection": "system.profile" },
+"actions": [ "dbStats", "collStats", "indexStats" ]
+},
+]
+}
+)
+```
+
+
+### Create/update user and assign created roles[¶](https://docs.percona.com/percona-monitoring-and-management/2/setting-up/client/mongodb.html#createupdate-user-and-assign-created-roles "Permanent link")
+
+Create or update a user with the minimum required privileges for monitoring by assigning the following roles:
+
+```bash
+db.getSiblingDB("admin").createUser({
+"user": "pmm",
+"pwd": "pmm",
+"roles": [
+{ "db": "admin", "role": "monitor" },
+{ "db": "local", "role": "read" },
+{ "db": "admin", "role": "clusterMonitor" }
+]
+})
+
+```
+
+## Profiling[¶](https://docs.percona.com/percona-monitoring-and-management/2/setting-up/client/mongodb.html#profiling "Permanent link")
+
+To use PMM Query Analytics, you must turn on MongoDB’s [profiling feature](https://docs.mongodb.com/manual/tutorial/manage-the-database-profiler/).
+
+You can set profiling:
+
+- permanently, by editing the MongoDB configuration file and restarting the database instance (recommended);
+- when starting MongoDB, by passing arguments to `mongod` on the command line;
+- until the next database instance restart, by running a command in a `mongo` session.
+
+Important
+
+Profiling is disabled by default as it may negatively impact the performance of the database server under specific circumstances, such as when busy servers are profiling all queries.
+
