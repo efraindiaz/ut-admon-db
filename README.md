@@ -74,10 +74,14 @@
   - Integridad.
   - Disponibilidad.
   - Confiabilidad.
+  - Utilidad.
   - Accesibilidad.
+  - Pertinencia.
+  - Usabilidad.
 
 ### Tema 2: Aseguramiento de la calidad de datos
 - 🔢 Verificación y acción correctiva:
-  - Actualización y normalización.
-  - Eliminación de duplicados.
+  - Actualización
+  - Normalización.
+  - Evitar la duplicidad.
 - 🔧 Herramientas para auditoría de calidad de datos.
