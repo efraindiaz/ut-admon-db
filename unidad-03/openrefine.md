@@ -77,3 +77,71 @@ OpenRefine es una herramienta poderosa para la **gestión de la calidad de datos
 - Sitio oficial: [https://openrefine.org/](https://openrefine.org/)
 - Documentación: [https://docs.openrefine.org/](https://docs.openrefine.org/)
 - Tutoriales en video: [https://www.youtube.com/c/OpenRefine](https://www.youtube.com/c/OpenRefine)
+
+## 🔹 **Expresiones**
+
+
+OpenRefine usa **GREL (General Refine Expression Language)** como su lenguaje principal para manipular y transformar datos. Es un lenguaje expresivo y flexible que permite limpiar, modificar y analizar datos dentro de OpenRefine.
+
+---
+
+## 🔹 **¿Qué es GREL?**
+
+GREL (**General Refine Expression Language**) es un lenguaje de expresiones en OpenRefine utilizado para:
+
+- Transformar datos en celdas.
+- Filtrar y dividir contenido.
+    
+- Aplicar operaciones matemáticas y de texto.
+    
+- Realizar conversiones entre tipos de datos.
+    
+
+GREL se usa en la pestaña **"Transform"** dentro de OpenRefine, cuando se editan celdas de manera masiva.
+
+---
+
+## 🔹 **Funciones comunes en GREL**
+
+### 📌 **Funciones de Texto**
+
+|**Función**|**Descripción**|**Ejemplo**|**Resultado**|
+|---|---|---|---|
+|`value.toUppercase()`|Convierte a mayúsculas|`"hola".toUppercase()`|`"HOLA"`|
+|`value.toLowercase()`|Convierte a minúsculas|`"Hola".toLowercase()`|`"hola"`|
+|`value.trim()`|Elimina espacios en blanco|`" Hola ".trim()`|`"Hola"`|
+|`value.length()`|Devuelve la longitud de un string|`"Hola".length()`|`4`|
+|`value.replace("a", "o")`|Reemplaza caracteres|`"banana".replace("a", "o")`|`"bonono"`|
+
+---
+
+### 📌 **Funciones de División y Unión de Datos**
+
+|**Función**|**Descripción**|**Ejemplo**|**Resultado**|
+|---|---|---|---|
+|`value.split(",")`|Divide un string en una lista|`"manzana,pera".split(",")`|`["manzana", "pera"]`|
+|`value.join(",")`|Une elementos de una lista|`["uno", "dos"].join("-")`|`"uno-dos"`|
+
+---
+
+### 📌 **Funciones de Tipo de Dato**
+
+|**Función**|**Descripción**|**Ejemplo**|**Resultado**|
+|---|---|---|---|
+|`toNumber(value)`|Convierte en número|`toNumber("123")`|`123`|
+|`toString(value)`|Convierte en texto|`toString(123)`|`"123"`|
+|`isNull(value)`|Verifica si es nulo|`isNull(null)`|`true`|
+
+---
+
+### 📌 **Condiciones y Expresiones Lógicas**
+
+| **Función**                                         | **Descripción**        | **Ejemplo**             | **Resultado** |
+| --------------------------------------------------- | ---------------------- | ----------------------- | ------------- |
+| `if(condición, valor_si_verdadero, valor_si_falso)` | Evalúa una condición   | `if(5 > 3, "Sí", "No")` | `"Sí"`        |
+| `isBlank(value)`                                    | Verifica si está vacío | `isBlank("")`           | `true`        |
+| `or(true, false)`                                   | Operador OR            | `or(true, false)`       | `true`        |
+| `and(true, false)`                                  | Operador AND           | `and(true, false)`      | `false`       |
+
+---
+
