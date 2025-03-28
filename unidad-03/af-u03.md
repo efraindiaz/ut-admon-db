@@ -74,7 +74,7 @@ Cada equipo debe generar un **documento en PDF** que contenga:
 
 ## **📌 Parte 4: Presentación en PowerPoint** 🎤  
 
-Cada equipo deberá presentar su proceso en **una exposición de 10 minutos**, usando una presentación con:  
+Cada equipo deberá presentar su proceso en **una exposición de almenos 5 minutos**, usando una presentación con:  
 
 📌 **1. Introducción**  
 - Caso de uso y contexto del set de datos.  
