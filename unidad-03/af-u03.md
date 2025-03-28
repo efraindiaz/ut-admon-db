@@ -16,7 +16,7 @@ Cada equipo diseñará un **caso de uso** con datos desordenados e inconsistente
 2️⃣ **Diseñar la base de datos**  
    - Debe incluir **mínimo 3 tablas**.  
    - Cada tabla debe tener **mínimo 4 columnas con errores intencionales** (pero pueden agregar más columnas si lo consideran necesario).  
-   - Agreguen **mínimo 100 registros por tabla** con errores intencionales.  
+   - Agreguen **mínimo 100 registros por tabla** que contengan errores intencionales.  
 
 3️⃣ **Generación de los datos inconsistentes**  
    - Pueden **crear los datos manualmente** o **asistirse con herramientas de inteligencia artificial** para generar registros con inconsistencias.  
