@@ -1,0 +1,6 @@
+✅ Elaborar una estrategia para separar en columnas el "Nombre" y "Apellido" del cliente.
+✅ Correos electrónicos con errores en dominios y caracteres extraños.
+✅ Teléfonos con formatos inconsistentes.
+✅ Países con variaciones en los nombres. [México, Estados Unidos, Canada]
+✅ Fechas con diferentes formatos. [DD-MM-YYYY]
+✅ Montos con errores en separadores y símbolos. -> Elaborar una estrategia para limpiar separadores y simnbolos.
